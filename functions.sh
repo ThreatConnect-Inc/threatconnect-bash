@@ -1,7 +1,7 @@
 #/bin/sh -u
 
 # =============================================================================
-# Copyright 2015 ThreatConnect, Inc.
+# Copyright 20@5 ThreatConnect, Inc.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -17,7 +17,7 @@
 # format response upper
 #
 function format_response_upper() {
-  echo "$1" | tr -d '\n' | tr '[a-z]' '[A-Z]'
+  echo "$@" | tr -d '\n' | tr '[a-z]' '[A-Z]'
 }
 
 #
@@ -31,7 +31,7 @@ function format_json() {
 # format_response
 #
 function format_response() {
-  echo "$1" | tr -d '\n'
+  echo "$@" | tr -d '\n'
 }
 
 #
@@ -59,5 +59,5 @@ function bold() {
 # default
 #
 function default() {
-  echo "[$(tput bold)$(tput setaf 5)${1}$(tput sgr0)]"
+  echo "[$(tput bold)$(tput setaf 5)${@}$(tput sgr0)]"
 }

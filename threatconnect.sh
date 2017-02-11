@@ -44,7 +44,7 @@ API_METHOD=${API_METHOD:-${API_METHOD_DEFAULT}}
 API_METHOD=$(format_response $API_METHOD)
 
 read -p "Owner $(default ${DEFAULT_OWNER}): " OWNER
-OWNER=${OWNEr:-${DEFAULT_OWNER}}
+OWNER=${OWNER:-${DEFAULT_OWNER}}
 OWNER=$(format_response $OWNER)
 
 if [ $API_METHOD == "POST" ] || [ $API_METHOD == "PUT" ];
@@ -53,7 +53,8 @@ then
     BODY=$(format_json $BODY)
 fi
 
-API_PAYLOAD="?owner=${OWNER}"
+API_PAYLOAD="?owner=${OWNER}&resultStart=0&resultLimit=1"
+API_PAYLOAD=""
 
 # GET URL and PATH
 API_URL=${API_HOST}${API_URI}${API_PAYLOAD}
@@ -77,9 +78,9 @@ authorization="TC ${API_ID}:${hmac_signature}"
 
 if [ $API_METHOD == "GET" ];
 then
-    curl_cmd="curl -s -i -H \"Timestamp: ${TIMESTAMP}\" -H \"Authorization: ${authorization}\" -X ${API_METHOD} ${API_URL}"
+    curl_cmd="curl -s -i -H \"Timestamp: ${TIMESTAMP}\" -H \"Authorization: ${authorization}\" -X ${API_METHOD} \"${API_URL}\""
 else
-    curl_cmd="curl -s -i -H \"Timestamp: ${TIMESTAMP}\" -H \"Authorization: ${authorization}\" -H \"Content-Type: ${CONTENT_TYPE}\" -d \"${BODY}\" -X ${API_METHOD} ${API_URL}"
+    curl_cmd="curl -s -i -H \"Timestamp: ${TIMESTAMP}\" -H \"Authorization: ${authorization}\" -H \"Content-Type: ${CONTENT_TYPE}\" -d \"${BODY}\" -X ${API_METHOD} \"${API_URL}\""
 fi
 
 #
