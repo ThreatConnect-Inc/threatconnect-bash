@@ -10,4 +10,8 @@ The following script is an example that can be used to test connectivity to [Thr
     - API_SECRET
     - API_HOST
     - DEFAULT_OWNER
-3. Execute `./threatconnect.sh` or `sh ./threatconnect.sh`. If the script was executed successfully, all Organizations and Communities that the API credentials have access will be returned.
+3. Execute `chmod 755 threatconnect.sh` and then `./threatconnect.sh`. If the script was executed successfully, all Organizations and Communities that the API credentials have access will be returned.
+
+NOTE:
+
+Using `sh threatconnect.com` does not work on OSX.
